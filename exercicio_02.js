@@ -1,43 +1,40 @@
-class MeuErro extends Error {
-  constructor(message){
-    super(message);
-    this.name = "Meu Erro";
+class MeuError extends Error{
+  constructor(menssage){
+  super(menssage);
+  this.name = "Meu erro";
   }
 }
 
-class Animal {
-  constructor(nome, idade, especie) {
+
+class Estudante {
+  constructor(nome, idade, turma) {
     this.nome = nome;
     this.idade = idade;
-    this.especie = especie;
+    this.turma = turma;
   }
 
   mostrarAtributos(){
-    try {
-      return this.atributos();  
-    } catch (error) {
-      console.log(error) 
+    try{
+      return this.atributos();
+    } catch(erro){
+      console.log(erro.stack)
     }
   } 
 
-  atributos() {
-    if (this.nome != ""){
-      return {
-        nome: this.nome,
-        idade: this.idade,
-        especie: this.especie
-      };
-    } else {
-      throw new MeuErro("Deu erro")
+  atributos(){
+      if (this.nome != "" && this.idade != "" && this.especie != ""){
+      } else{ 
+      throw  new MeuError("todos os atributos tem que estar completos")
+    }
     }
   }
-}
 
-const meuAnimal = new Animal("", 3, "cachorro");
-const atributos = meuAnimal.mostrarAtributos();
+const estudante = new Estudante("", 16, "3A");
 
-console.log(atributos)
-// Imprimindo os atributos
-// console.log(atributos.nome);   
-// console.log(atributos.idade);  
-// console.log(atributos.especie); 
+const atributos = estudante.mostrarAtributos();
+
+console.log(atributos.nome);   
+console.log(atributos.idade);  
+
+console.log(atributos.turma); 
+
