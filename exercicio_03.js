@@ -11,16 +11,20 @@ class NerdIF {
     this.nota_cosplay = nota_cosplay;
   }
 
-  retornarAtributos() {
-    return this.atributos()
-  }
+  mostrarAtributos(){
+    try{
+      return this.atributos();
+    } catch(erro){
+      console.log(erro.stack)
+    }
+  } 
 
   atributos() {
-    if (this.nome != "" && this.idade != "" && this.especie != "")
+    if (this.estudante != "" && this.cosplay != "" && this.nota_cosplay!= "")
     {return {
       estudante: this.estudante,
       cosplay: this.cosplay,
-      nota_cosplay: this.nota_cospla
+      nota_cosplay: this.nota_cosplay
     }; } else{ 
     throw  new MeuError("todos os atributos tem que estar completos")
   }
@@ -28,7 +32,7 @@ class NerdIF {
 }
 
 const aluno = new NerdIF("", "Homem-Aranha", 9.5);
-const atributos = aluno.retornarAtributos();
+const atributos = aluno.atributos();
 
 console.log(atributos.estudante); 
 console.log(atributos.cosplay);   
